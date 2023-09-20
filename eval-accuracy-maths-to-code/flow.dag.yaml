@@ -1,0 +1,41 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+inputs:
+  groundtruth:
+    type: string
+    default: "1"
+  prediction:
+    type: string
+    default: "2"
+outputs:
+  score:
+    type: string
+    reference: ${line_process.output}
+nodes:
+- name: line_process
+  type: python
+  source:
+    type: code
+    path: line_process.py
+  inputs:
+    groundtruth: ${inputs.groundtruth}
+    prediction: ${get_answer.output}
+- name: aggregate
+  type: python
+  source:
+    type: code
+    path: aggregate.py
+  inputs:
+    processed_results: ${line_process.output}
+  aggregation: true
+- name: get_answer
+  type: llm
+  source:
+    type: code
+    path: get_answer.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    temperature: 0
+    answer: ${inputs.prediction}
+    max_tokens: 250
+  connection: AzureOpenAIConnection
+  api: chat

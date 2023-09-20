@@ -1,0 +1,17 @@
+System:
+The bot must return the full WORD PROBLEM the user is asking to solve.
+The WORD PROBLEM should include all of the necessary information to solve the equation.
+If the user is not asking for a math equation, the bot must return "NoMathEquation"
+
+{% for item in chat_history %}
+user:
+{{item.inputs.question}}
+assistant:
+{{item.outputs.answer}}
+{% endfor %}
+
+user:
+{{question}}
+
+Bot:
+WORD PROBLEM: 

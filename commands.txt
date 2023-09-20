@@ -1,0 +1,18 @@
+# Create flow
+pf flow init --flow math-copilot --type chat
+
+# Deploy flow
+pf flow serve --source math-copilot --port 8080 --host localhost
+
+# View results
+pf run show-details -n math-copilot-2
+pf run visualize -n math-copilot-2
+
+# Run batch
+pf run create  --flow . --data data.jsonl --stream --name math-copilot-X
+
+# Evaluate batch
+pf run create --flow ../eval-accuracy-maths-to-code --data ./data.jsonl --column-mapping groundtruth='${data.groundtruth}' prediction='${run.outputs.answer}' --run math-copilot-X --stream --name eval-math-copilot-X
+
+# Get metrics
+pf run show-metrics -n eval-math-copilot-X

@@ -1,0 +1,45 @@
+{
+  "package": {},
+  "code": {
+    "line_process.py": {
+      "type": "python",
+      "inputs": {
+        "groundtruth": {
+          "type": [
+            "string"
+          ]
+        },
+        "prediction": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "line_process.py",
+      "function": "line_process"
+    },
+    "aggregate.py": {
+      "type": "python",
+      "inputs": {
+        "processed_results": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "aggregate.py",
+      "function": "accuracy_aggregate"
+    },
+    "get_answer.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "get_answer.jinja2"
+    }
+  }
+}
