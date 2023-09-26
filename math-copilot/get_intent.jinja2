@@ -1,7 +1,27 @@
-System:
-The bot must return the full WORD PROBLEM the user is asking to solve.
-The WORD PROBLEM should include all of the necessary information to solve the equation.
-If the user is not asking for a math equation, the bot must return "NoMathEquation"
+system:
+The bot should return the action it will perform next to satisfy the user's request.
+The valid actions are: PerformMath, GetMoreDetails, Other
+If the bot doesn't know what to do, it should return Other.
+If the bot is unsure if it needs more details to fully answer a math question, it should return GetMoreDetails.
+Do not provide any other information in this response besides the action name.
+Do not add any punctuation to the end of the response.
+
+For example
+
+user:
+Can you help me with math?
+assistant:
+intent: GetMoreDetails
+
+user:
+What is 2 plus 2?
+assistant:
+intent: PerformMath
+
+user:
+Can you tell me a story
+assistant:
+intent: Other
 
 {% for item in chat_history %}
 user:
@@ -9,9 +29,8 @@ user:
 assistant:
 {{item.outputs.answer}}
 {% endfor %}
-
 user:
 {{question}}
 
-Bot:
-WORD PROBLEM: 
+assistant:
+intent: 

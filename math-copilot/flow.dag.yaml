@@ -8,6 +8,7 @@ inputs:
   question:
     type: string
     is_chat_input: true
+    default: What is 5+4?
 outputs:
   answer:
     type: string
@@ -25,7 +26,7 @@ nodes:
     temperature: 0.7
     chat_history: ${inputs.chat_history}
     question: ${inputs.question}
-    answer: ${math_planner.output}
+    system_answer: ${math_planner.output}
   connection: AzureOpenAIConnection
   api: chat
 - name: get_intent
@@ -47,4 +48,16 @@ nodes:
   inputs:
     connection: AzureOpenAIConnection
     intent: ${get_intent.output}
+    deployment_name: gpt-4
+    math_problem: ${get_word_problem.output}
+- name: get_word_problem
+  type: llm
+  source:
+    type: code
+    path: get_word_problem.jinja2
+  inputs:
     deployment_name: gpt-35-turbo
+    chat_history: ${inputs.chat_history}
+    question: ${inputs.question}
+  connection: AzureOpenAIConnection
+  api: chat

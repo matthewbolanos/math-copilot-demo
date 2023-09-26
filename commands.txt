@@ -9,10 +9,10 @@ pf run show-details -n math-copilot-2
 pf run visualize -n math-copilot-2
 
 # Run batch
-pf run create  --flow . --data data.jsonl --stream --name math-copilot-X
+pf run create  --flow . --data data.jsonl --stream --name math-copilot-3
 
 # Evaluate batch
-pf run create --flow ../eval-accuracy-maths-to-code --data ./data.jsonl --column-mapping groundtruth='${data.groundtruth}' prediction='${run.outputs.answer}' --run math-copilot-X --stream --name eval-math-copilot-X
+pf run create --flow ../eval-accuracy-maths-to-code --data ./data.jsonl --column-mapping groundtruth='${data.groundtruth}' prediction='${run.outputs.answer}' --run math-copilot-3 --stream --name eval-math-copilot-3
 
 # Get metrics
-pf run show-metrics -n eval-math-copilot-X
+pf run show-metrics -n eval-math-copilot-3

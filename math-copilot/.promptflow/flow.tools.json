@@ -1,6 +1,65 @@
 {
   "package": {},
   "code": {
+    "get_word_problem.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "get_word_problem.jinja2"
+    },
+    "get_intent.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "get_intent.jinja2"
+    },
+    "math_planner.py": {
+      "type": "python",
+      "inputs": {
+        "intent": {
+          "type": [
+            "string"
+          ]
+        },
+        "math_problem": {
+          "type": [
+            "string"
+          ]
+        },
+        "deployment_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "connection": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "math_planner.py",
+      "function": "chat"
+    },
     "chat.jinja2": {
       "type": "llm",
       "inputs": {
@@ -21,44 +80,6 @@
         }
       },
       "source": "chat.jinja2"
-    },
-    "get_intent.jinja2": {
-      "type": "llm",
-      "inputs": {
-        "chat_history": {
-          "type": [
-            "string"
-          ]
-        },
-        "question": {
-          "type": [
-            "string"
-          ]
-        }
-      },
-      "source": "get_intent.jinja2"
-    },
-    "math_planner.py": {
-      "type": "python",
-      "inputs": {
-        "intent": {
-          "type": [
-            "string"
-          ]
-        },
-        "deployment_name": {
-          "type": [
-            "string"
-          ]
-        },
-        "connection": {
-          "type": [
-            "AzureOpenAIConnection"
-          ]
-        }
-      },
-      "source": "math_planner.py",
-      "function": "chat"
     }
   }
 }
